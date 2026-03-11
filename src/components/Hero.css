@@ -12,7 +12,7 @@
 /* Light Theme */
 @media (prefers-color-scheme: light) {
   .hero {
-    --hero-bg: #fafafa;
+    --hero-bg: #ffffff;
     --hero-text: #111827;
     --hero-text-secondary: rgba(0, 0, 0, 0.7);
     --hero-button-bg: #111827;

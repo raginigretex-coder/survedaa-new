@@ -12,14 +12,14 @@
   
   background-color: var(--faq-bg);
   padding: 6rem 2rem 8rem;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   position: relative;
 }
 
 /* Light Theme */
 @media (prefers-color-scheme: light) {
   .faq-section {
-    --faq-bg: #f8f9fa;
+    --faq-bg: #f3f3f3;
     --card-bg: #ffffff;
     --card-border: #e5e7eb;
     --card-border-hover: #d1d5db;
@@ -367,7 +367,7 @@
 
 @media (max-width: 768px) {
   .faq-section {
-    padding: 4rem 1.5rem 6rem;
+    padding: 4rem 1.5rem 4rem;
   }
 
   .faq-heading {
@@ -442,7 +442,7 @@
 
 @media (max-width: 480px) {
   .faq-section {
-    padding: 4rem 1rem 5rem;
+    padding: 4rem 1rem 4rem;
   }
 
   .faq-heading {

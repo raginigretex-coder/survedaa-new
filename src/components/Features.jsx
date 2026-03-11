@@ -14,14 +14,51 @@ const features = [
     title: "AI-powered financial insights",
     description:
       "Lorem ipsum dolor sit amet consectetur sit nulla in malesuada aenean iaculis varius aliquam ut laoreet convallis.",
-    image: "/images/fea.png",
+    image: "/images/fea1.png",
   },
+  {
+    id: 3,
+    title: "Secure digital transactions",
+    description:
+      "Lorem ipsum dolor sit amet consectetur sit nulla in malesuada aenean iaculis varius aliquam ut laoreet convallis.",
+    image: "/images/fea1.png",
+  },
+  {
+    id: 4,
+    title: "Real-time expense tracking",
+    description:
+      "Lorem ipsum dolor sit amet consectetur sit nulla in malesuada aenean iaculis varius aliquam ut laoreet convallis.",
+    image: "/images/fea1.png",
+  },
+  // {
+  //   id: 5,
+  //   title: "Automated bill payments",
+  //   description:
+  //     "Lorem ipsum dolor sit amet consectetur sit nulla in malesuada aenean iaculis varius aliquam ut laoreet convallis.",
+  //   image: "/images/fea1.png",
+  // },
+  // {
+  //   id: 6,
+  //   title: "Multi-currency support",
+  //   description:
+  //     "Lorem ipsum dolor sit amet consectetur sit nulla in malesuada aenean iaculis varius aliquam ut laoreet convallis.",
+  //   image: "/images/fea1.png",
+  // },
+  // {
+  //   id: 7,
+  //   title: "24/7 customer support",
+  //   description:
+  //     "Lorem ipsum dolor sit amet consectetur sit nulla in malesuada aenean iaculis varius aliquam ut laoreet convallis.",
+  //   image: "/images/fea1.png",
+  // },
 ];
 
 export default function Features() {
   const cardRefs = useRef([]);
 
   useEffect(() => {
+    // Adjust threshold and rootMargin for mobile devices
+    const isMobile = window.innerWidth <= 768;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -30,7 +67,10 @@ export default function Features() {
           }
         });
       },
-      { threshold: 0.35 }
+      { 
+        threshold: isMobile ? 0.15 : 0.2, 
+        rootMargin: isMobile ? '0px 0px -30% 0px' : '0px 0px -20% 0px' 
+      }
     );
 
     cardRefs.current.forEach((card) => {

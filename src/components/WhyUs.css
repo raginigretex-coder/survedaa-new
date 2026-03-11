@@ -168,7 +168,7 @@
 /* Light Theme Support */
 @media (prefers-color-scheme: light) {
   .whyus-section {
-    --whyus-bg: #f8f9fa;
+    --whyus-bg: #f3f3f3;
     --card-bg: #ffffff;
     --card-border: #e5e7eb;
     --card-border-hover: #d1d5db;

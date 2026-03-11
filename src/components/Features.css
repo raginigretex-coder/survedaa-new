@@ -78,8 +78,8 @@
     align-items: center;
     /* Create a large scrolling area to allow overlap */
     height: auto; 
-    gap: 250px; /* Space between cards for scroll reveal */
-    padding-bottom: 500px; /* Extra padding at bottom for full scroll */
+    gap: 20vh; /* Space between cards - allows each card to be fully visible */
+    padding-bottom: 20vh; /* Extra padding at bottom for full scroll */
   }
 
 .feature-stack-card {
@@ -97,7 +97,14 @@
     /* Animation initial state */
     opacity: 0.5;
     transform: translateY(100px);
-    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), top 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    margin-bottom: 10vh; /* Add margin to create scroll space */
+}
+
+/* First card should be visible from start */
+.feature-stack-card.card-1 {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Second card (index 1) starts more hidden and positioned lower */
@@ -105,7 +112,19 @@
     opacity: 0;
     transform: translateY(250px) scale(0.92);
     pointer-events: none;
-    top: 250px; /* Lower sticky position to allow it to scroll up fully */
+    top: 100px; /* Same sticky position as card 1 */
+}
+
+/* Cards 3-7 start hidden and positioned lower */
+.feature-stack-card.card-3,
+.feature-stack-card.card-4,
+.feature-stack-card.card-5,
+.feature-stack-card.card-6,
+.feature-stack-card.card-7 {
+    opacity: 0;
+    transform: translateY(250px) scale(0.92);
+    pointer-events: none;
+    top: 100px; /* Same sticky position for all cards */
 }
 
 @media (prefers-color-scheme: light) {
@@ -131,7 +150,18 @@
 .feature-stack-card.card-2.is-visible {
     opacity: 1;
     transform: translateY(0) scale(1);
-    top: 100px; /* Move to same position as first card when visible */
+    top: 100px; /* Same position as first card when visible */
+}
+
+/* Cards 3-7 become fully visible when scrolled to */
+.feature-stack-card.card-3.is-visible,
+.feature-stack-card.card-4.is-visible,
+.feature-stack-card.card-5.is-visible,
+.feature-stack-card.card-6.is-visible,
+.feature-stack-card.card-7.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    top: 100px; /* Same position for all cards */
 }
 
 
@@ -175,6 +205,27 @@
 
 /* Second card image becomes visible when card is visible */
 .feature-stack-card.card-2.is-visible .feature-stack-actual-image {
+    opacity: 1;
+    transform: scale(1);
+    height: 100%;
+}
+
+/* Cards 3-7 images start hidden */
+.feature-stack-card.card-3 .feature-stack-actual-image,
+.feature-stack-card.card-4 .feature-stack-actual-image,
+.feature-stack-card.card-5 .feature-stack-actual-image,
+.feature-stack-card.card-6 .feature-stack-actual-image,
+.feature-stack-card.card-7 .feature-stack-actual-image {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Cards 3-7 images become visible when card is visible */
+.feature-stack-card.card-3.is-visible .feature-stack-actual-image,
+.feature-stack-card.card-4.is-visible .feature-stack-actual-image,
+.feature-stack-card.card-5.is-visible .feature-stack-actual-image,
+.feature-stack-card.card-6.is-visible .feature-stack-actual-image,
+.feature-stack-card.card-7.is-visible .feature-stack-actual-image {
     opacity: 1;
     transform: scale(1);
     height: 100%;
@@ -389,41 +440,83 @@
     }
     
     .features-scroll-container {
-        gap: 0;
-        padding-bottom: 2rem;
+        gap: 15vh; /* Maintain scroll gap for mobile */
+        padding-bottom: 15vh; /* Extra padding for full scroll */
     }
     
     .feature-stack-card {
         padding: 1.5rem;
-        position: relative;
-        top: 0;
+        position: sticky; /* Keep sticky for scroll effect */
+        top: 50px; /* Lower sticky position for mobile */
         min-height: auto;
         width: 100%;
         max-width: 100%;
-        margin-bottom: 0;
+        margin-bottom: 5vh; /* Add margin to create scroll space */
+        opacity: 0.5;
+        transform: translateY(100px);
+        overflow: visible; /* Ensure content is visible */
     }
     
     .feature-stack-card:last-child {
-        margin-bottom: 0;
+        margin-bottom: 5vh;
     }
     
+    /* First card visible from start */
     .feature-stack-card.card-1 {
         opacity: 1;
         transform: translateY(0);
     }
     
-    .feature-stack-card.card-2 {
+    /* Other cards start hidden */
+    .feature-stack-card.card-2,
+    .feature-stack-card.card-3,
+    .feature-stack-card.card-4,
+    .feature-stack-card.card-5,
+    .feature-stack-card.card-6,
+    .feature-stack-card.card-7 {
+        opacity: 0;
+        transform: translateY(150px) scale(0.95);
+        pointer-events: none;
+    }
+    
+    /* Cards become visible when scrolled to */
+    .feature-stack-card.card-2.is-visible,
+    .feature-stack-card.card-3.is-visible,
+    .feature-stack-card.card-4.is-visible,
+    .feature-stack-card.card-5.is-visible,
+    .feature-stack-card.card-6.is-visible,
+    .feature-stack-card.card-7.is-visible {
         opacity: 1;
         transform: translateY(0) scale(1);
-        top: 0;
+        pointer-events: auto;
     }
     
     .feature-stack-title {
-        font-size: 2.25rem;
+        font-size: 2rem;
+    }
+    
+    .feature-stack-desc {
+        font-size: 1rem;
     }
     
     .feature-stack-image {
         min-height: 250px;
+    }
+    
+    .feature-stack-content {
+        gap: 2rem;
+        width: 100%;
+        overflow: visible;
+    }
+    
+    .feature-stack-text {
+        width: 100%;
+        overflow: visible;
+    }
+    
+    .feature-stack-image {
+        width: 100%;
+        overflow: hidden;
     }
     
     .mockup-tabs .tab {
@@ -446,22 +539,54 @@
     }
     
     .features-scroll-container {
-        gap: 0;
-        padding-bottom: 2rem;
+        gap: 15vh; /* Maintain scroll gap for small mobile */
+        padding-bottom: 15vh;
     }
     
     .feature-stack-card {
         padding: 1.25rem;
         border-radius: 16px;
-        margin-bottom: 0;
+        position: sticky;
+        top: 40px; /* Lower sticky position for small mobile */
+        margin-bottom: 5vh;
+        opacity: 0.5;
+        transform: translateY(100px);
+        overflow: visible;
     }
     
     .feature-stack-card:last-child {
-        margin-bottom: 0;
+        margin-bottom: 5vh;
+    }
+    
+    .feature-stack-card.card-1 {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .feature-stack-card.card-2,
+    .feature-stack-card.card-3,
+    .feature-stack-card.card-4,
+    .feature-stack-card.card-5,
+    .feature-stack-card.card-6,
+    .feature-stack-card.card-7 {
+        opacity: 0;
+        transform: translateY(120px) scale(0.95);
+        pointer-events: none;
+    }
+    
+    .feature-stack-card.card-2.is-visible,
+    .feature-stack-card.card-3.is-visible,
+    .feature-stack-card.card-4.is-visible,
+    .feature-stack-card.card-5.is-visible,
+    .feature-stack-card.card-6.is-visible,
+    .feature-stack-card.card-7.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
     }
     
     .feature-stack-content {
-        gap: 2rem;
+        gap: 1.5rem;
     }
     
     .feature-stack-title {
@@ -469,7 +594,7 @@
     }
     
     .feature-stack-desc {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .feature-stack-image {
@@ -492,21 +617,57 @@
     }
     
     .features-scroll-container {
-        gap: 0;
-        padding-bottom: 1.5rem;
+        gap: 15vh; /* Maintain scroll gap for very small mobile */
+        padding-bottom: 15vh;
     }
     
     .feature-stack-card {
         padding: 1rem;
-        margin-bottom: 0;
+        position: sticky;
+        top: 30px; /* Lower sticky position for very small mobile */
+        margin-bottom: 5vh;
+        opacity: 0.5;
+        transform: translateY(100px);
+        overflow: visible;
     }
     
     .feature-stack-card:last-child {
-        margin-bottom: 0;
+        margin-bottom: 5vh;
+    }
+    
+    .feature-stack-card.card-1 {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .feature-stack-card.card-2,
+    .feature-stack-card.card-3,
+    .feature-stack-card.card-4,
+    .feature-stack-card.card-5,
+    .feature-stack-card.card-6,
+    .feature-stack-card.card-7 {
+        opacity: 0;
+        transform: translateY(100px) scale(0.95);
+        pointer-events: none;
+    }
+    
+    .feature-stack-card.card-2.is-visible,
+    .feature-stack-card.card-3.is-visible,
+    .feature-stack-card.card-4.is-visible,
+    .feature-stack-card.card-5.is-visible,
+    .feature-stack-card.card-6.is-visible,
+    .feature-stack-card.card-7.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
     }
     
     .feature-stack-title {
         font-size: 1.5rem;
+    }
+    
+    .feature-stack-desc {
+        font-size: 0.9rem;
     }
     
     .feature-stack-image {
@@ -583,8 +744,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 220px;
-    padding-bottom: 50px;
+    gap: 20vh; /* Full viewport height between cards */
+    padding-bottom: 20vh; /* Extra padding for full scroll */
   }
   
   /* Feature Card */
@@ -610,9 +771,10 @@
     box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.5);
   
     opacity: 0;
-    transform: translateY(120px) scale(0.96);
+    transform: translateY(100px) scale(0);
   
     transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    margin-bottom: 10vh; /* Add margin to create scroll space */
   }
   
   /* Visible State */
@@ -630,6 +792,26 @@
   
   .card-2 {
     z-index: 2;
+  }
+  
+  .card-3 {
+    z-index: 3;
+  }
+  
+  .card-4 {
+    z-index: 4;
+  }
+  
+  .card-5 {
+    z-index: 5;
+  }
+  
+  .card-6 {
+    z-index: 6;
+  }
+  
+  .card-7 {
+    z-index: 7;
   }
   
   /* Card Layout */
@@ -674,6 +856,26 @@
   }
   
   .feature-stack-card.card-2.is-visible .feature-stack-actual-image {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Cards 3-7 image animation */
+  
+  .feature-stack-card.card-3 .feature-stack-actual-image,
+  .feature-stack-card.card-4 .feature-stack-actual-image,
+  .feature-stack-card.card-5 .feature-stack-actual-image,
+  .feature-stack-card.card-6 .feature-stack-actual-image,
+  .feature-stack-card.card-7 .feature-stack-actual-image {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  
+  .feature-stack-card.card-3.is-visible .feature-stack-actual-image,
+  .feature-stack-card.card-4.is-visible .feature-stack-actual-image,
+  .feature-stack-card.card-5.is-visible .feature-stack-actual-image,
+  .feature-stack-card.card-6.is-visible .feature-stack-actual-image,
+  .feature-stack-card.card-7.is-visible .feature-stack-actual-image {
     opacity: 1;
     transform: scale(1);
   }
@@ -850,22 +1052,25 @@
     }
   
     .features-scroll-container {
-      gap: 0;
-      padding-bottom: 2rem;
+      gap: 15vh;
+      padding-bottom: 15vh;
     }
   
     .feature-stack-card {
       padding: 1.5rem;
-      position: relative;
-      top: 0;
+      position: sticky;
+      top: 50px;
       min-height: auto;
       width: 100%;
       max-width: 100%;
-      margin-bottom: 0;
+      margin-bottom: 5vh;
+      opacity: 0.5;
+      transform: translateY(100px);
+      overflow: visible;
     }
     
     .feature-stack-card:last-child {
-      margin-bottom: 0;
+      margin-bottom: 5vh;
     }
   
     .feature-stack-card.card-1 {
@@ -873,18 +1078,75 @@
       transform: translateY(0);
     }
   
-    .feature-stack-card.card-2 {
+    .feature-stack-card.card-2,
+    .feature-stack-card.card-3,
+    .feature-stack-card.card-4,
+    .feature-stack-card.card-5,
+    .feature-stack-card.card-6,
+    .feature-stack-card.card-7 {
+      opacity: 0;
+      transform: translateY(150px) scale(0.95);
+      pointer-events: none;
+    }
+  
+    .feature-stack-card.card-2.is-visible,
+    .feature-stack-card.card-3.is-visible,
+    .feature-stack-card.card-4.is-visible,
+    .feature-stack-card.card-5.is-visible,
+    .feature-stack-card.card-6.is-visible,
+    .feature-stack-card.card-7.is-visible {
       opacity: 1;
       transform: translateY(0) scale(1);
-      top: 0;
+      pointer-events: auto;
     }
   
     .feature-stack-title {
-      font-size: 2.25rem;
+      font-size: 2rem;
+    }
+  
+    .feature-stack-desc {
+      font-size: 1rem;
     }
   
     .feature-stack-image {
       min-height: 250px;
+    }
+  
+    .feature-stack-content {
+      gap: 2rem;
+      width: 100%;
+      overflow: visible;
+    }
+    
+    .feature-stack-text {
+      width: 100%;
+      overflow: visible;
+    }
+    
+    .feature-stack-image {
+      width: 100%;
+      overflow: hidden;
+    }
+  
+    /* Image animations for mobile */
+    .feature-stack-card.card-2 .feature-stack-actual-image,
+    .feature-stack-card.card-3 .feature-stack-actual-image,
+    .feature-stack-card.card-4 .feature-stack-actual-image,
+    .feature-stack-card.card-5 .feature-stack-actual-image,
+    .feature-stack-card.card-6 .feature-stack-actual-image,
+    .feature-stack-card.card-7 .feature-stack-actual-image {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  
+    .feature-stack-card.card-2.is-visible .feature-stack-actual-image,
+    .feature-stack-card.card-3.is-visible .feature-stack-actual-image,
+    .feature-stack-card.card-4.is-visible .feature-stack-actual-image,
+    .feature-stack-card.card-5.is-visible .feature-stack-actual-image,
+    .feature-stack-card.card-6.is-visible .feature-stack-actual-image,
+    .feature-stack-card.card-7.is-visible .feature-stack-actual-image {
+      opacity: 1;
+      transform: scale(1);
     }
   
     .mockup-tabs .tab {

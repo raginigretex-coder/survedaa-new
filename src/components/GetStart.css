@@ -20,7 +20,7 @@
 /* Light Theme */
 @media (prefers-color-scheme: light) {
   .getstart {
-    --getstart-bg: #fafafa;
+    --getstart-bg: #ffffff;
     --getstart-text: #111827;
     --getstart-button-bg: #111827;
     --getstart-button-text: #ffffff;
@@ -152,20 +152,35 @@
   gap: 2rem;
   align-items: stretch;
   position: relative;
-  box-shadow: var(--getstart-shadow);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 8px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
   min-height: 600px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.getstart-bottom-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  pointer-events: none;
 }
 
 @media (prefers-color-scheme: light) {
   .getstart-bottom-section {
     border-color: var(--getstart-card-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
   }
 
   .getstart-bottom-section:hover {
     border-color: var(--getstart-card-border-hover);
-    box-shadow: var(--getstart-shadow-hover);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 12px 48px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
   }
 }
 
@@ -173,7 +188,7 @@
 .getstart-left-section {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
   max-width: 500px;
   margin-top: 10px;
   width: 100%;
@@ -183,7 +198,7 @@
 .getstart-stats-container {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .getstart-stat-item {
@@ -244,7 +259,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   width: fit-content;
   max-width: 100%;
-  margin-top: auto;
+  /* margin-top: auto; */
   white-space: nowrap;
   box-sizing: border-box;
 }
@@ -469,7 +484,7 @@
     width: fit-content;
     max-width: calc(100% - 2rem);
     justify-content: center;
-    margin: 0 auto;
+    margin: 0;
     white-space: nowrap;
   }
 
@@ -569,7 +584,7 @@
     width: fit-content;
     max-width: calc(100% - 2rem);
     justify-content: center;
-    margin: 0 auto;
+    margin: 0;
     white-space: nowrap;
   }
 
@@ -643,7 +658,7 @@
     width: fit-content;
     max-width: calc(100% - 1.5rem);
     justify-content: center;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .getstart-cta-arrow {
