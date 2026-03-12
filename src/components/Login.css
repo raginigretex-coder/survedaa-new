@@ -277,12 +277,14 @@
 .login-right {
   background: var(--reg-bg);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 3rem 2.5rem;
+  padding: 2.5rem 2.5rem 5rem 2.5rem;
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
+  scroll-padding-top: 2.5rem;
+  scroll-behavior: smooth;
 }
 
 /* Back button positioned on right side - optimized placement */
@@ -338,7 +340,8 @@
   z-index: 1;
   background: transparent;
   backdrop-filter: none;
-  padding: 0;
+  padding: 0 0 2rem 0;
+  margin-top: 4rem;
   border-radius: 0;
   border: none;
   box-shadow: none;
@@ -351,6 +354,8 @@
   box-shadow: none;
   position: relative;
   overflow: visible;
+  padding-top: 1rem;
+  margin-top: 0;
 }
 
 .login-form-container.has-registration-form::before {
@@ -949,6 +954,7 @@
   .login-form-container {
     max-width: 100%;
     padding: 2.5rem;
+    margin-top: 3.5rem;
     border-radius: 0;
   }
 }
@@ -1001,6 +1007,7 @@
   
   .login-form-container {
     padding: 0;
+    margin-top: 3rem;
     border-radius: 0;
   }
 
@@ -1046,10 +1053,12 @@
   
   .login-form-container {
     padding: 0;
+    margin-top: 2.5rem;
   }
   
   .login-form-container {
     padding: 1.5rem;
+    margin-top: 2.5rem;
   }
 
   .login-title {
@@ -1077,8 +1086,9 @@
   }
 
   .login-right {
-    padding: 1.5rem 1rem;
-    align-items: center;
+    padding: 1.5rem 1rem 3rem 1rem;
+    align-items: flex-start;
+    scroll-padding-top: 1.5rem;
   }
 
   .login-back-button-right {
@@ -1147,6 +1157,7 @@
   
   .login-form-container {
     padding: 0;
+    margin-top: 2rem;
     border-radius: 0;
   }
 
@@ -1188,6 +1199,7 @@
   
   .login-form-container {
     padding: 0;
+    margin-top: 2.5rem;
     border-radius: 0;
   }
 
@@ -1227,6 +1239,8 @@
   margin-bottom: 3rem;
   position: relative;
   padding-bottom: 0;
+  padding-top: 0.5rem;
+  margin-top: 0;
 }
 
 .registration-header::after {
@@ -1242,6 +1256,7 @@
   position: relative;
   width: 80px;
   height: 80px;
+  flex-shrink: 0;
 }
 
 .registration-icon::before {
