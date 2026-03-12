@@ -6,6 +6,8 @@ import WhyUs from './components/WhyUs'
 import FAQSection from './components/FAQSection'
 import GetStart from './components/GetStart'
 import Testimonial from './components/Testimonial'
+import Login from './components/Login'
+import Signup from './components/Signup'
 import './App.css'
 
 function App() {
@@ -23,7 +25,8 @@ function App() {
             <Testimonial />
           </>
         } />
-       
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>
   )
